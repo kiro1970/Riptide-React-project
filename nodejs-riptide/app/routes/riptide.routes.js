@@ -18,7 +18,8 @@ module.exports = app => {
     router.delete("/ranks/:id", ranks.delete);
     // Create a new Rank
     router.delete("/ranks", ranks.deleteAll);
-    
+
+    router.post("/members/login", members.login);
     router.post("/members", members.create);
     // Retrieve all Ranks
     router.get("/members", members.findAll);
