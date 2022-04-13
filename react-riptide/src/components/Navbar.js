@@ -17,8 +17,10 @@ class Navbar extends React.Component {
       }
     })  
     const data = await res.json()
+    console.log('User: ' + data);
     // store returned user somehow
-  }
+    window.sessionStorage.setItem("user", JSON.stringify(data));
+    }
 
     render() {
         return(

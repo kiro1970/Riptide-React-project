@@ -35,7 +35,8 @@ class Member extends React.Component {
     
 
     async getmember(){
-        const apiUrl = 'http://localhost:8080/api/members/1';
+        const user = JSON.parse(window.sessionStorage.getItem("user"));
+        const apiUrl = 'http://localhost:8080/api/members/' + user.member_id;
         let data = await fetch(apiUrl)
             .then((response) => response.json());
         this.setState({

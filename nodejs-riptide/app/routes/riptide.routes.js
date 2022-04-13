@@ -49,7 +49,7 @@ module.exports = app => {
     // Create a new Rank
     router.post("/schedules", schedules.create);
     // Retrieve all Ranks
-    router.get("/schedules", schedules.findAll);
+    router.get("/schedules/:member_id", schedules.findAll);
     // Retrieve a single Rank with id
     router.get("/schedules/:id", schedules.findOne);
     // Update a Rank with id

@@ -8,9 +8,9 @@ exports.create = (req, res) => {
 // Retrieve all Schedules from the database.
 exports.findAll = (req, res) => {
   console.log('Attempting to FindAll.');
-  const color = req.query.color;
-  var condition = color ? { color: { [Op.iLike]: `%${color}%` } } : null;
-  Schedule.findAll({ where: condition })
+  const member_id = req.query.member_id;
+  Schedule.findAll({ where: { member_id: member_id  }
+})
     .then(data => {
         console.log('Data is:'+data);
       res.send(data);

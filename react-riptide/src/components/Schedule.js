@@ -13,7 +13,8 @@ class Schedule extends React.Component {
     }
 
   async doschedule(){
-    const apiUrl = 'http://localhost:8080/api/schedules';
+    const user = JSON.parse(window.sessionStorage.getItem("user"));
+    const apiUrl = 'http://localhost:8080/api/schedules/';
     let data = await fetch(apiUrl)
         .then((response) => response.json());
     this.setState({schedules: data } );

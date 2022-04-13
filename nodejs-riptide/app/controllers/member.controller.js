@@ -9,14 +9,36 @@ exports.create = (req, res) => {
 };
 exports.login = async (req, res) => {
   const { token }  = req.body    ;
+  if( !token)
+    return;
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: '1061246817484-df9o16t8aoc6j1vdsf8hkt5rbelcdr05.apps.googleusercontent.com'
 });
-  const { name, email, picture } = ticket.getPayload();
-  console.log (name, email) ;
-  console.log('Holy shit... it worked!');
+  const { given_name, family_name, sub, email } = ticket.getPayload();
+  let user = await Member.findOne({ where: { member_id: sub}});
+  console.log ( email) ;
+  if( !user ){
+    console.log('User ' + sub + "doesn't exist");
+    // create member 
+    user = await Member.create( {
+      member_id:sub,
+      first_name:given_name,
+      last_name:family_name,
+      email:email,
+      member_since: new Date(),
+      classes_taken:0,
+      current_rank:'White',
+      next_rank:'Blue',
+      classes_til_rank_up:50
+    });
+  
+  }
+  res.send(user);
+ 
 };
+
+
 // Retrieve all Members from the database.
 exports.findAll = (req, res) => {
   console.log('Attempting to FindAll.');
