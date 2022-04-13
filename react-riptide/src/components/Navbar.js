@@ -24,7 +24,7 @@ class Navbar extends React.Component {
         return(
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <button className="navbar-brand btn btn-link text-warning" ><img width={70} src={process.env.PUBLIC_URL +"/RipTide_logo2.png"} alt="Rip Tide Martial Arts" /></button>
+                    <button className="navbar-brand btn btn-link text-warning" ><img width={100} src={process.env.PUBLIC_URL +"/riptidecircle.png"} alt="Rip Tide Martial Arts" /></button>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
