@@ -3,6 +3,16 @@ const Schedule = db.schedules;
 const Op = db.Sequelize.Op;
 // Create and Save a new Schedule
 exports.create = (req, res) => {
+  let member_id = req.body.member_id;
+  let class_id = req.body.class_id;
+  if(member_id && class_id){
+    Schedule.create( {
+      class_id:parseInt(class_id),
+      member_id:member_id,
+      classcompleted:false
+    });
+
+  }
   
 };
 // Retrieve all Schedules from the database.

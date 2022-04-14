@@ -3,9 +3,32 @@ import React from 'react';
 class ClassSession extends React.Component {
   constructor(props){
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       ClassSession: [{id: 0, classType: 'Brazilian Jiu-Jitsu', when: '2022-04-07', capacity: 1, enrolled: 1}]
     };
+  }
+
+  handleClick(event){
+   console.log('button id ' + event.target.id);
+   this.enroll(event);
+  }
+
+  async enroll(event){
+   const user = JSON.parse(window.sessionStorage.getItem("user"));
+   const apiUrl = 'http://localhost:8080/api/schedules/create/';
+        let data = await fetch(apiUrl, {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+            body: JSON.stringify( {
+               member_id:user.member_id,
+               class_id:event.target.id
+            })
+        });
+
   }
 
   componentDidMount() {
@@ -35,7 +58,7 @@ class ClassSession extends React.Component {
               <td className='text-center'>{when}</td>
               <td className='text-center'>{capacity}</td>
               <td className='text-center'>{enrolled}</td>
-              <td className='text-center'><button>Enroll</button></td>
+              <td className='text-center'><button id={id} onClick={this.handleClick}>Enroll</button></td>
            </tr>
         )
      })

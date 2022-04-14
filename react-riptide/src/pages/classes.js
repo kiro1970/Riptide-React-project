@@ -9,7 +9,7 @@ const Ranks = () => {
             <div className="col-12"><h1>Class Schedule</h1></div>
         </div>
         <div className="col-lg-5 col-sm-12"><ClassSession/></div>
-        <div className="row text-white">
+        <div className="row bg-primary text-white">
           <h1>Build strength, confidence, and character through martial arts</h1>
             <div className="col-lg-4 col-sm-12">
               <ul>             
@@ -24,6 +24,7 @@ const Ranks = () => {
             </div>
               <div className="col-lg-4 col-sm-12">
                 <ul>
+                  
                   <h2>Brazilian Jiu-Jitsu</h2>
                 <li>
                 Jiu-Jitsu has it routes in Japan, but its modern and most widely practised form comes from Brazil. Brazilian Jiu-Jitsu is a martial art that focuses on grappling and ground fighting against opponents by utilising various chokes, joint locks, and other submissions to take out an opponent. Traditionally it is practised while wearing a gi and belt, with the belt color signifying you rank and status on the mat. Practitioners of this art can grow their physical ability and confidence for self defense through training, while having fun at the same time.

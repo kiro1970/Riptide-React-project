@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
       },
       member_id: {
-        type: Sequelize.INTEGER, 
+        type: Sequelize.STRING, 
         allowNull: false
       },
       classcompleted: {

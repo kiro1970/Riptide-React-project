@@ -6,7 +6,7 @@ const Home = () => {
     <div className="bg-primary text-white">
       <div>
         <img src="riptidecircle.png" className=""/>
-        <img src="jjblackbeltpromo.jpg" className="w-50 h-"/>
+        <img src="riptidegrouppic.jpg" className="w-50"/>
       </div>
       <div className="row"> 
         <div className="col-4">

@@ -5,6 +5,21 @@ import { GoogleLogin } from 'react-google-login';
 class Navbar extends React.Component {
     constructor(props){
         super(props);
+        let data =  window.sessionStorage.getItem("user");
+        if( data ){
+            data = JSON.parse(data);
+            this.state = {
+                member_id:data.member_id,
+                name:data.first_name,
+            }
+        }
+        else{
+            this.state = {
+                member_id:null,
+                name:null,
+            }
+        }
+
         this.handleLogin = this.handleLogin.bind(this);
     }
     handleLogin = async googleData => {  const res = await fetch("http://localhost:8080/api/members/login", {
@@ -20,9 +35,12 @@ class Navbar extends React.Component {
     console.log('User: ' + data);
     // store returned user somehow
     window.sessionStorage.setItem("user", JSON.stringify(data));
+    window.sessionStorage.setItem("memberId", data.member_id);
+    this.setState({member_id:data.member_id, name:data.first_name})
     }
 
     render() {
+        let name = this.state.name;
         return(
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
@@ -42,17 +60,22 @@ class Navbar extends React.Component {
                                 <NavLink to="/ranks" className="nav-link active btn btn-link">Ranks</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/members" className="nav-link active btn btn-link">Members</Link>
+                                <NavLink to="/members/" className="nav-link active btn btn-link">Members</NavLink>
                             </li>
                         </ul>
                         <div className="d-flex">
-                        <GoogleLogin
-                            clientId={'1061246817484-df9o16t8aoc6j1vdsf8hkt5rbelcdr05.apps.googleusercontent.com'}
-                            buttonText="Log in with Google"
-                            onSuccess={this.handleLogin}
-                            onFailure={this.handleLogin}
-                            cookiePolicy={'single_host_origin'}/>
-                       </div>
+                            { name ?
+                                    <h3 className='text-white'>Hi {name}</h3>
+                                    :
+                                    <GoogleLogin
+                                    clientId={'1061246817484-df9o16t8aoc6j1vdsf8hkt5rbelcdr05.apps.googleusercontent.com'}
+                                    buttonText="Log in with Google"
+                                    onSuccess={this.handleLogin}
+                                    onFailure={this.handleLogin}
+                                    cookiePolicy={'single_host_origin'}/>
+        
+                            }
+                        </div>
                     </div>
                 </div>
             </nav>

@@ -20,9 +20,8 @@ module.exports = app => {
     router.delete("/ranks", ranks.deleteAll);
 
     router.post("/members/login", members.login);
-    router.post("/members", members.create);
     // Retrieve all Ranks
-    router.get("/members", members.findAll);
+    router.get("/members", members.checkLogin);
     // Retrieve a single Rank with id
     router.get("/members/:id", members.findOne);
     // Update a Rank with id
@@ -47,7 +46,7 @@ module.exports = app => {
     router.delete("/classsession", classsession.deleteAll);
 
     // Create a new Rank
-    router.post("/schedules", schedules.create);
+    router.post("/schedules/create", schedules.create);
     // Retrieve all Ranks
     router.get("/schedules/:member_id", schedules.findAll);
     // Retrieve a single Rank with id

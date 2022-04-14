@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client('1061246817484-df9o16t8aoc6j1vdsf8hkt5rbelcdr05.apps.googleusercontent.com');
 // Create and Save a new Member
-exports.create = (req, res) => {
+exports.checkLogin = (req, res) => {
   
 };
 exports.login = async (req, res) => {

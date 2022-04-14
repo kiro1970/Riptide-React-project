@@ -67,7 +67,12 @@ class Member extends React.Component {
 
 
     render() {
+        let member_id = this.state.member_id;
         return (
+            <div>
+            { member_id == 0 ?
+                <h1>Log in to view members data</h1>
+                :
                 <form onSubmit={this.handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="member_id" className="form-label">Member ID</label>
@@ -106,7 +111,11 @@ class Member extends React.Component {
                         <input type="text" className="form-control" name="classes_til_rank_up" readOnly value={this.state.classes_til_rank_up} onChange={this.handleInputChange}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
-                </form>);
+                </form>
+            }
+            </div>
+            );
+            
     }
 };
 
