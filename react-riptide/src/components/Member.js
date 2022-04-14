@@ -71,7 +71,7 @@ class Member extends React.Component {
         return (
             <div>
             { member_id == 0 ?
-                <h1>Log in to view members data</h1>
+                <h1>Log in to view your profile</h1>
                 :
                 <form onSubmit={this.handleSubmit}>
                     <div className="mb-3">

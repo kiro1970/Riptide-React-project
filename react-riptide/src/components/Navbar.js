@@ -65,7 +65,7 @@ class Navbar extends React.Component {
                         </ul>
                         <div className="d-flex">
                             { name ?
-                                    <h3 className='text-white'>Hi {name}</h3>
+                                    <h3 className='text-white'>Let's get training, {name}</h3>
                                     :
                                     <GoogleLogin
                                     clientId={'1061246817484-df9o16t8aoc6j1vdsf8hkt5rbelcdr05.apps.googleusercontent.com'}
