@@ -14,10 +14,7 @@ class Schedule extends React.Component {
 
   async doschedule(){
     const user = JSON.parse(window.sessionStorage.getItem("user"));
-    let apiUrl = 'http://localhost:8080/api/schedules/?';
-    let params = new URLSearchParams();
-    params.append('member_id', user.member_id);
-    apiUrl += params.toString();
+    let apiUrl = 'http://localhost:8080/api/schedules/?member_id=' + user.member_id;
     let data = await fetch(apiUrl)
         .then((response) => response.json());
     this.setState({schedules: data } );
@@ -26,12 +23,14 @@ class Schedule extends React.Component {
  
   renderTableData() {
      return this.state.schedules.map((schedule, index) => {
-        const { class_id, member_id, classcompleted } = schedule //destructuring
+        
+        const { classType, when } = schedule //destructuring
+        const classtime = new Date(when);
+
         return (
-           <tr key={class_id}>
-              <td className='text-left'>{class_id}</td>
-              <td className='text-center'>{member_id}</td>
-              <td className='text-center'>{classcompleted}</td>
+           <tr key={classType}>
+              <td className='text-left'>{classType}</td>
+              <td className='text-center'>{classtime.toLocaleDateString("en-US")} {classtime.toLocaleTimeString("en-US")}</td>
            </tr>
         )
      })
@@ -44,9 +43,8 @@ class Schedule extends React.Component {
               <caption className='fw-bold'>Schedule</caption>
               <tbody>
                  <tr>
-                    <th>Class ID</th>
-                    <th className='text-center'>Member ID</th>
-                    <th className='text-center'>Completed</th>
+                    <th>Class Type</th>
+                    <th className='text-center'>When</th>
                    </tr>
                  {this.renderTableData()}
               </tbody>

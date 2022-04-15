@@ -10,7 +10,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-let reset = false;
+let reset = true;
 const db= require("./app/models");
 if( reset ){
    db.sequelize.sync({ force: true }).then(() => {

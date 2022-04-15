@@ -52,10 +52,12 @@ class ClassSession extends React.Component {
   renderTableData() {
      return this.state.ClassSession.map((ClassSession, index) => {
         const { id, classType, when, capacity, enrolled  } = ClassSession //destructuring
+        const classtime = new Date(when);
+
         return (
            <tr key={id}>
               <td className='text-left'>{classType}</td>
-              <td className='text-center'>{when}</td>
+              <td className='text-center'>{classtime.toLocaleDateString("en-US")} {classtime.toLocaleTimeString("en-US")}</td>
               <td className='text-center'>{capacity}</td>
               <td className='text-center'>{enrolled}</td>
               <td className='text-center'><button id={id} onClick={this.handleClick}>Enroll</button></td>

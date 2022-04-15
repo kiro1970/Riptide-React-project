@@ -1,3 +1,4 @@
+const { QueryTypes } = require("sequelize");
 const db = require("../models");
 const Schedule = db.schedules;
 const Op = db.Sequelize.Op;
@@ -19,6 +20,15 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   console.log('Attempting to FindAll.');
   const member_id = req.query.member_id;
+  db.sequelize.query( 'select classsessions."classType", classsessions."when" from classsessions, schedules where schedules.class_id= classsessions.id and schedules.member_id = :param1',
+    {
+      replacements: { param1: member_id},
+      type: QueryTypes.SELECT
+    }).then(data => {
+      console.log('Data is:'+data);
+      res.send(data);
+    });
+/*
   Schedule.findAll({ where: { member_id: member_id  }
 })
     .then(data => {
@@ -31,6 +41,7 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving schedules."
       });
     });
+    */
 };
 // Find a single Schedule with an id
 exports.findOne = (req, res) => {
